@@ -62,7 +62,7 @@ const Register = () => {
 
     // If validation passes, make the API call
     try {
-      const response = await axios.post("https://jback.vercel.app/register", {
+      const response = await axios.post("jback.vercel.app/register", {
         fullName,
         Number,
         Email,
