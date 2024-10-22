@@ -78,7 +78,7 @@ const Register = () => {
       console.log(response.data);
     } catch (error) {
       setColor("Red");
-      setFillSpaces("An error occured, Please Try again.");
+      setFillSpaces("An erroxsr occured, Please Try again.");
       console.log(error);
     }
   };
