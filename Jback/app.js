@@ -37,9 +37,9 @@ const Person = mongoose.model("Person", personSchema);
 // Middleware
 app.use(
   cors({
-    origin: "https://juaso.vercel.app", // Allow requests from this origin
-    methods: ["GET", "POST"], // Specify allowed methods
-    credentials: true, // Allow credentials (if needed)
+    origin: ["https://juaso.vercel.app", "http://localhost:3000"],
+    methods: ["GET", "POST", "OPTIONS"],
+    credentials: true,
   })
 );
 app.use(express.json()); // Parse JSON bodies
