@@ -81,7 +81,7 @@ const Register = () => {
       console.log(response.data);
     } catch (error) {
       setColor("Red");
-      setFillSpaces("A Piuxc occured, Please Try again.");
+      setFillSpaces("A Piuxcv occured, Please Try again.");
       console.log(error);
     }
   };
