@@ -62,16 +62,13 @@ const Register = () => {
 
     // If validation passes, make the API call
     try {
-      const response = await axios.post(
-        "https://jback.vercel.app/register/register",
-        {
-          fullName,
-          Number,
-          Email,
-          Password,
-          Location,
-        }
-      );
+      const response = await axios.post("https://jback.vercel.app/register", {
+        fullName,
+        Number,
+        Email,
+        Password,
+        Location,
+      });
       setColor("Green");
       setFillSpaces(`${response.data}, Redirecting to login page...`);
       setTimeout(() => {
