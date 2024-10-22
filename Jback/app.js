@@ -37,11 +37,12 @@ const Person = mongoose.model("Person", personSchema);
 // Middleware
 app.use(
   cors({
-    origin: ["https://juaso.vercel.app", "http://localhost:3000"],
+    origin: "*", // Allow all origins (not recommended for production)
     methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })
 );
+
 app.use(express.json()); // Parse JSON bodies
 
 // Register the router with the app
