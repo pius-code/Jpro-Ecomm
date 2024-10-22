@@ -1,72 +1,76 @@
 import express from "express";
-const app = express();
-const router = express.Router();
-// Register the router with the app
-
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-
 import mongoose from "mongoose";
 import { config } from "dotenv";
+import cors from "cors";
 
+const app = express();
+const router = express.Router();
+
+// Load environment variables
 config();
+
+// Connect to MongoDB
 await mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
-    console.log("database connection successful");
+    console.log("Database connection successful");
   })
   .catch((err) => {
     console.log(err);
   });
 
+// Define the person schema
 const personSchema = new mongoose.Schema({
   fullName: String,
   Email: {
     type: String,
     unique: true,
   },
-
   Location: String,
   Number: Number,
   Password: String,
 });
 
+// Create the Person model
 const Person = mongoose.model("Person", personSchema);
 
-const port = 3001;
-app.listen(port, () => {
-  console.log(`server started on ${port}`);
+// Middleware
+app.use(
+  cors({
+    origin: "https://juaso.vercel.app", // Allow requests from this origin
+    methods: ["GET", "POST"], // Specify allowed methods
+    credentials: true, // Allow credentials (if needed)
+  })
+);
+app.use(express.json()); // Parse JSON bodies
+
+// Register the router with the app
+app.use(router);
+
+// Define routes
+app.get("/", (req, res) => {
+  res.send("Hello World");
 });
 
-app.use(express.json());
-app.use(router);
 router.post("/login", async (req, res) => {
   console.log("Login Route hit");
   const { username, password } = req.body;
   console.log(req.body);
   console.log(username);
+
   const user = await Person.findOne({ Email: username });
   console.log(user);
+
   if (user === null) {
-    console.log("are you okay");
+    console.log("User  not found");
     res.status(401).json({ message: "Invalid username or password" });
   } else {
-    console.log("user found");
+    console.log("User  found");
     res.json({ message: "Login successful" });
   }
 });
 
-router.post("https://jback.vercel.app/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   console.log("Register Route hit");
   console.log(req.body.Email);
 
@@ -74,10 +78,16 @@ router.post("https://jback.vercel.app/register", async (req, res) => {
     const newPerson = new Person(req.body);
     const savedPerson = await newPerson.save();
     res.status(201).send(`Account Created: ${savedPerson.Email}`);
-    console.log("user added successfully");
+    console.log("User  added successfully");
   } catch (err) {
     console.log(err);
     res.status(500).send(`Error Creating Account, Please Try Again`);
-    console.log("user NOT added successfully");
+    console.log("User  NOT added successfully");
   }
+});
+
+// Start the server
+const port = 3001;
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
 });
