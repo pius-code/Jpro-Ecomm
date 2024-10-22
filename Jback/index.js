@@ -8,7 +8,10 @@ const router = express.Router();
 
 // Load environment variables
 config();
-
+// Define routes
+app.get("/", (req, res) => {
+  res.send("<h1>good</h1>"); // Send HTML response
+});
 // Connect to MongoDB
 await mongoose
   .connect(process.env.MONGO_URL)
