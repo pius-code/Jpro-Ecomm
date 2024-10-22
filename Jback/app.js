@@ -66,7 +66,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/register", async (req, res) => {
+router.post("https://jback.vercel.app/register", async (req, res) => {
   console.log("Register Route hit");
   console.log(req.body.Email);
 
