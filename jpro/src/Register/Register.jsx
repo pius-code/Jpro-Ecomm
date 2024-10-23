@@ -63,7 +63,7 @@ const Register = () => {
     // If validation passes, make the API call
     try {
       const response = await axios.post(
-        "http://jback-imkatkqy.b4a.run/register",
+        "https://jback-imkatkqy.b4a.run/register",
         {
           fullName,
           Number,
