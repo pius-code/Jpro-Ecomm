@@ -8,6 +8,9 @@ const router = express.Router();
 
 // Load environment variables
 config();
+app.use(cors());
+//ds
+app.use(router);
 
 // Connect to MongoDB
 await mongoose
@@ -36,9 +39,7 @@ const Person = mongoose.model("Person", personSchema);
 
 // Middleware
 // Middleware
-app.use(cors({}));
-//ds
-app.use(router);
+
 app.use(express.json()); // Parse JSON bodies
 
 // Register the router with the app
