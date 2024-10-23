@@ -53,7 +53,9 @@ app.use(router);
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
-
+app.get("/register", (req, res) => {
+  res.send("Hello register");
+});
 router.post("/login", async (req, res) => {
   console.log("Login Route hit");
   const { username, password } = req.body;
