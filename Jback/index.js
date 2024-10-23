@@ -36,7 +36,9 @@ const Person = mongoose.model("Person", personSchema);
 
 // Middleware
 // Middleware
-
+app.use(cors({}));
+//ds
+app.use(router);
 app.use(express.json()); // Parse JSON bodies
 
 // Register the router with the app
@@ -81,17 +83,6 @@ router.post("/register", async (req, res) => {
     console.log("User  NOT added successfully");
   }
 });
-
-app.use(
-  cors({
-    origin: ["*"],
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "Accept"],
-    credentials: true,
-  })
-);
-//ds
-app.use(router);
 
 // Start the server
 const port = 3001;
