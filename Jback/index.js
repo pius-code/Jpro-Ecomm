@@ -35,14 +35,15 @@ const personSchema = new mongoose.Schema({
 const Person = mongoose.model("Person", personSchema);
 
 // Middleware
+// Middleware
 app.use(
   cors({
-    origin: "* ", // Allow all origins (not recommended for production)
+    origin: ["http://localhost:5173", "https://your-production-domain.com"],
     methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })
 );
-app.options("*", cors());
+app.options("*", cors()); // Preflight requests
 
 app.use(express.json()); // Parse JSON bodies
 
