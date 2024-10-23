@@ -20,4 +20,4 @@ EXPOSE 3001
 # ENV NODE_ENV=production
 
 # Command to run the application
-CMD ["node", "index.js"]
+CMD ["npm", "index.js"]
