@@ -8,16 +8,6 @@ const router = express.Router();
 
 // Load environment variables
 config();
-app.use(
-  cors({
-    origin: ["*"],
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-    credentials: false,
-  })
-);
-//ds
-app.use(router);
 
 // Connect to MongoDB
 await mongoose
@@ -91,6 +81,17 @@ router.post("/register", async (req, res) => {
     console.log("User  NOT added successfully");
   }
 });
+
+app.use(
+  cors({
+    origin: ["*"],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+    credentials: false,
+  })
+);
+//ds
+app.use(router);
 
 // Start the server
 const port = 3001;
