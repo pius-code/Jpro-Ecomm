@@ -57,7 +57,7 @@ const Register = () => {
     // Check if passwords match
     if (Password !== ConfPassword) {
       setConfP("Your passxwords do not match");
-      return; // Prevent API call
+      return;
     }
 
     // If validation passes, make the API call
