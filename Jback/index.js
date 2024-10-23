@@ -8,6 +8,15 @@ const router = express.Router();
 
 // Load environment variables
 config();
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://your-production-domain.com"],
+    methods: ["GET", "POST", "OPTIONS"],
+    credentials: true,
+  })
+);
+app.options("*", cors()); // Preflight requests
+app.use(router);
 
 // Connect to MongoDB
 await mongoose
@@ -36,19 +45,10 @@ const Person = mongoose.model("Person", personSchema);
 
 // Middleware
 // Middleware
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "https://your-production-domain.com"],
-    methods: ["GET", "POST", "OPTIONS"],
-    credentials: true,
-  })
-);
-app.options("*", cors()); // Preflight requests
 
 app.use(express.json()); // Parse JSON bodies
 
 // Register the router with the app
-app.use(router);
 
 // Define routes
 app.get("/", (req, res) => {
