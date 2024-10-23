@@ -5,12 +5,16 @@ import cors from "cors";
 
 const app = express();
 const router = express.Router();
+app.options("*", cors());
 app.use(
   cors({
     origin: ["http://localhost:5173"],
-    methods: ["GET", "POST"],
+    methods: ["GET,POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
   })
 );
+
 // Load environment variables
 config();
 
