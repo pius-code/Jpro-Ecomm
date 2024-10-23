@@ -8,10 +8,6 @@ const router = express.Router();
 
 // Load environment variables
 config();
-// Define routes
-app.get("/", (req, res) => {
-  res.send("<h1>good</h1>"); // Send HTML response
-});
 
 // Connect to MongoDB
 await mongoose
@@ -39,7 +35,13 @@ const personSchema = new mongoose.Schema({
 const Person = mongoose.model("Person", personSchema);
 
 // Middleware
-// y
+app.use(
+  cors({
+    origin: "*", // Allow all origins (not recommended for production)
+    methods: ["GET", "POST", "OPTIONS"],
+    credentials: true,
+  })
+);
 
 app.use(express.json()); // Parse JSON bodies
 
