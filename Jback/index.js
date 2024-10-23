@@ -8,14 +8,7 @@ const router = express.Router();
 
 // Load environment variables
 config();
-app.use(
-  cors({
-    origin: ["*"],
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-    credentials: false,
-  })
-);
+app.use(cors());
 //ds
 app.use(router);
 
