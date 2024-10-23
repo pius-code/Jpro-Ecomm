@@ -5,21 +5,9 @@ import cors from "cors";
 
 const app = express();
 const router = express.Router();
-app.options("*", cors());
-app.use(
-  cors({
-    origin: ["https://localhost:5173"],
-    methods: ["GET,POST"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  })
-);
 
 // Load environment variables
 config();
-
-app.use(router);
-
 // Connect to MongoDB
 await mongoose
   .connect(process.env.MONGO_URL)
@@ -92,7 +80,8 @@ router.post("/register", async (req, res) => {
     console.log("User  NOT added successfully");
   }
 });
-
+app.use(cors());
+app.use(router);
 // Start the server
 const port = 3001;
 app.listen(port, () => {
