@@ -86,8 +86,8 @@ app.use(
   cors({
     origin: ["*"],
     methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-    credentials: false,
+    allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+    credentials: true,
   })
 );
 //ds
