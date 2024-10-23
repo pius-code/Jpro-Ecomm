@@ -37,7 +37,7 @@ const Person = mongoose.model("Person", personSchema);
 // Middleware
 app.use(
   cors({
-    origin: "*", // Allow all origins (not recommended for production)
+    origin: "* ", // Allow all origins (not recommended for production)
     methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })
