@@ -16,7 +16,7 @@ app.use(
     credentials: false,
   })
 );
-app.options("*", cors()); // Preflight requests
+
 app.use(router);
 
 // Connect to MongoDB
