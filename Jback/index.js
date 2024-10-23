@@ -10,10 +10,10 @@ const router = express.Router();
 config();
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["*"],
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type"],
-    credentials: true,
+    credentials: false,
   })
 );
 app.options("*", cors()); // Preflight requests
