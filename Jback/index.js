@@ -6,7 +6,7 @@ import cors from "cors";
 const app = express();
 const router = express.Router();
 app.use(cors());
-app.use(router);
+
 // Load environment variables
 config();
 // Connect to MongoDB
@@ -81,7 +81,7 @@ router.post("/register", async (req, res) => {
     console.log("User  NOT added successfully");
   }
 });
-
+app.use(router);
 // Start the server
 const port = 3001;
 app.listen(port, () => {
