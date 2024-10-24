@@ -75,7 +75,7 @@ const Register = () => {
       setColor("Green");
       setFillSpaces(`${response.data}, Redirecting to login page...`);
       setTimeout(() => {
-        Navigate("/"); // Redirect after showing the success message
+        Navigate("/"); // Redirecct after showing the success message
       }, 2000);
 
       console.log(response.data);
